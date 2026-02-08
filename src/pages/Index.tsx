@@ -92,7 +92,7 @@ const Index = () => {
         <section
           id="home"
           className="relative pt-28 pb-20 md:pt-36 overflow-hidden"
-          style={{ paddingTop: "calc(7rem + 60px)" }}
+          style={{ paddingTop: "calc(7rem + 0px)" }}
         >
           <div className="absolute inset-0 z-0 hero-grid" />
           <div className="container relative z-10 grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
