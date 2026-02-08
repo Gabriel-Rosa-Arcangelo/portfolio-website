@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, ExternalLink } from "lucide-react";
@@ -15,27 +15,134 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  const isActive = (href: string) => {
+  const isActive = (href: string, sectionId?: string) => {
+    if (isHome && sectionId) {
+      return (activeSection ?? "home") === sectionId;
+    }
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  const smoothScrollTo = (targetY: number, duration = 1100) => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      window.scrollTo(0, targetY);
+      return;
+    }
+
+    const startY = window.scrollY;
+    const delta = targetY - startY;
+    if (Math.abs(delta) < 1) return;
+
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+
+    const easeInOut = (t: number) =>
+      t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (startTime === null) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOut(progress);
+      window.scrollTo(0, startY + delta * eased);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        root.style.scrollBehavior = previousBehavior;
+      }
+    };
+
+    window.requestAnimationFrame(step);
   };
 
-  const handleNavClick = (href: string, sectionId?: string) => {
-    if (isActive(href)) {
-      if (sectionId) {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        scrollToTop();
-      }
+  const scrollToTop = () => {
+    smoothScrollTo(0);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    const navHeight = document.querySelector("nav")?.getBoundingClientRect().height ?? 0;
+    const targetTop = section.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+    smoothScrollTo(Math.max(0, targetTop));
+  };
+
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+    sectionId?: string,
+  ) => {
+    if (isHome && sectionId) {
+      event.preventDefault();
+      scrollToSection(sectionId);
+      setIsOpen(false);
+      return;
     }
+
+    if (isActive(href, sectionId)) {
+      event.preventDefault();
+      scrollToTop();
+    }
+
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (!isHome) {
+      setActiveSection(null);
+      return;
+    }
+
+    const sectionIds = navItems
+      .map((item) => item.sectionId)
+      .filter((id): id is string => Boolean(id));
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) return;
+
+    let ticking = false;
+    const updateActive = () => {
+      const navHeight = document.querySelector("nav")?.getBoundingClientRect().height ?? 0;
+      const scrollPosition = window.scrollY + navHeight + 24;
+      let currentId = sections[0].id;
+
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPosition) {
+          currentId = section.id;
+        }
+      }
+
+      setActiveSection(currentId);
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActive();
+        ticking = false;
+      });
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [isHome]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
@@ -54,9 +161,9 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 to={item.href}
-                onClick={() => handleNavClick(item.href, item.sectionId)}
+                onClick={(event) => handleNavClick(event, item.href, item.sectionId)}
                 className={`rounded-full border px-4 py-2 text-xs font-mono uppercase tracking-[0.2em] transition-all ${
-                  isActive(item.href)
+                  isActive(item.href, item.sectionId)
                     ? "border-primary/40 bg-primary/15 text-primary"
                     : "border-transparent text-muted-foreground hover:border-white/15 hover:bg-white/5 hover:text-foreground"
                 }`}
@@ -85,7 +192,7 @@ const Navbar = () => {
             >
               <Linkedin className="h-5 w-5" />
             </a>
-            <Link to="/contact">
+            <Link to="/contact" onClick={(event) => handleNavClick(event, "/contact", "contact")}>
               <Button size="sm" className="btn-glow">
                 Let&apos;s Talk
                 <ExternalLink className="h-4 w-4" />
@@ -116,9 +223,9 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => handleNavClick(item.href, item.sectionId)}
+                  onClick={(event) => handleNavClick(event, item.href, item.sectionId)}
                   className={`block rounded-2xl border px-4 py-3 text-xs font-mono uppercase tracking-[0.2em] transition-all ${
-                    isActive(item.href)
+                    isActive(item.href, item.sectionId)
                       ? "border-primary/40 bg-primary/15 text-primary"
                       : "border-transparent text-muted-foreground hover:border-white/15 hover:bg-white/5 hover:text-foreground"
                   }`}
@@ -144,7 +251,11 @@ const Navbar = () => {
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <Link to="/contact" className="flex-1" onClick={() => setIsOpen(false)}>
+                <Link
+                  to="/contact"
+                  className="flex-1"
+                  onClick={(event) => handleNavClick(event, "/contact", "contact")}
+                >
                   <Button size="sm" className="w-full btn-glow">
                     Let&apos;s Talk
                     <ExternalLink className="h-4 w-4" />

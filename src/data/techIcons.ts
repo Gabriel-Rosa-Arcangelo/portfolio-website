@@ -15,7 +15,7 @@ const techIconMap: Record<string, string> = {
   tailwind: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
   tailwindcss: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
   recharts: "https://cdn.simpleicons.org/recharts",
-  jwt: "https://cdn.simpleicons.org/jsonwebtokens",
+  jwt: "https://cdn.simpleicons.org/jsonwebtokens/ffffff",
   pandas: "https://icon.icepanel.io/Technology/svg/Pandas.svg",
   reportlab: "https://cdn.simpleicons.org/reportlab",
   matplotlib: "https://icon.icepanel.io/Technology/svg/Matplotlib.svg",

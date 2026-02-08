@@ -1,6 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, ExternalLink } from "lucide-react";
+import {
+  ArrowRight,
+  Github,
+  ExternalLink,
+  Server,
+  Workflow,
+  HeartPulse,
+  Brain,
+  Monitor,
+  ShieldCheck,
+  GraduationCap,
+} from "lucide-react";
 import { Project } from "@/data/projects";
 import TechIcon from "@/components/TechIcon";
 
@@ -10,6 +21,18 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const getProjectIcon = () => {
+    if (project.isNDA) return ShieldCheck;
+    if (project.title.includes("Student Researcher")) return GraduationCap;
+    if (project.category.includes("Healthcare")) return HeartPulse;
+    if (project.category.includes("ML")) return Brain;
+    if (project.category.includes("Automation")) return Workflow;
+    if (project.category.includes("React")) return Monitor;
+    return Server;
+  };
+
+  const Icon = getProjectIcon();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,13 +46,18 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
         <div className="relative flex h-full flex-col">
           <div className="flex items-start justify-between gap-4">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-                {project.type}
+            <div className="flex items-start gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10">
+                <Icon className="h-5 w-5 text-primary" />
               </span>
-              <h3 className="mt-2 text-xl font-display font-semibold text-foreground transition-colors group-hover:text-primary">
-                {project.title}
-              </h3>
+              <div>
+                <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+                  {project.type}
+                </span>
+                <h3 className="mt-2 text-xl font-display font-semibold text-foreground transition-colors group-hover:text-primary">
+                  {project.title}
+                </h3>
+              </div>
             </div>
             {project.isNDA && (
               <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-primary">

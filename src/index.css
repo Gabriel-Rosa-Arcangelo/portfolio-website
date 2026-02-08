@@ -276,6 +276,16 @@
     box-shadow:
       0 10px 30px -20px hsl(var(--primary) / 0.6),
       inset 0 1px 0 0 hsl(var(--foreground) / 0.08);
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+
+  .floating-chip:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    background-color: hsl(var(--primary) / 0.16);
+    box-shadow:
+      0 16px 36px -22px hsl(var(--primary) / 0.8),
+      0 0 0 1px hsl(var(--primary) / 0.25);
+    filter: brightness(1.05);
   }
 
   .hero-blue {
@@ -289,6 +299,19 @@
     box-shadow: 0 0 0 0 hsl(var(--primary) / 0.55);
     animation: tag-pulse 2.2s ease-in-out infinite;
   }
+
+  .code-dracula {
+    background: #282a36;
+    color: #f8f8f2;
+    border: 1px solid #44475a;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .code-keyword { color: #ff5fd7; }
+  .code-fn { color: #7bffb4; }
+  .code-string { color: #fff59a; }
+  .code-prop { color: #5fd7ff; }
+  .code-punct { color: #ffffff; }
 
   @keyframes grid-pan {
     from {

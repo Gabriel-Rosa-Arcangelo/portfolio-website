@@ -1,30 +1,48 @@
-# Gabriel Rosa Arcangelo — Portfolio
+# Gabriel Rosa — Backend Developer Portfolio
 
-Personal portfolio website built with Vite + React + TypeScript, Tailwind CSS and shadcn/ui.
+Corporate-style portfolio for backend engineering, focused on clean presentation for recruiters and clients. Built as a single landing page with structured sections, case studies, and clear contact options.
 
-## Requirements
+## Highlights
 
-- Node.js 18+
-- npm
+- One-page layout with anchored sections (Projects, Services, Stack, About, Contact)
+- Corporate dark theme with animated grid hero
+- Floating tech stack panel + real technology icons
+- Case studies with detailed project cards and NDA section
+- Contact flow with email draft + quick social links
 
-## Development
+## Tech Stack
 
-```sh
-npm install
-npm run dev
-```
-
-## Build
-
-```sh
-npm run build
-npm run preview
-```
-
-## What technologies are used for this project?
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+- Vite + React + TypeScript
 - Tailwind CSS
+- Framer Motion
+- React Router
+- shadcn/ui
+
+## Content & Customization
+
+- Portfolio data: `src/data/projects.ts`
+- Tech icons mapping: `src/data/techIcons.ts`
+- Main layout: `src/pages/Index.tsx`
+- UI components: `src/components/*`
+- Assets: `public/`
+
+## Sections
+
+- Hero (title, CTAs, animated grid)
+- Featured Projects + NDA section
+- Services
+- Tech Stack
+- Experience
+- Contact
+
+## Design Notes
+
+- Corporate palette with blue primary and dark background
+- Dark cards and subtle borders for readability
+- Minimal, recruiter-friendly tone
+
+## Contact
+
+- GitHub: https://github.com/Gabriel-Rosa-Arcangelo
+- LinkedIn: https://www.linkedin.com/in/gabriel-rosa-arcangelo/
+- Email: grosarcangelo@gmail.com

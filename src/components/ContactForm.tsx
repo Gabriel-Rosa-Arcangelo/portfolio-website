@@ -30,6 +30,8 @@ const ContactForm = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const inputBaseStyles =
+    "border-white/15 bg-white/5 text-foreground shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] hover:border-white/25 focus-visible:border-primary/60 focus-visible:ring-primary/35 focus-visible:ring-offset-0";
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -99,21 +101,26 @@ const ContactForm = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const googleCalendarUrl = (() => {
-    const url = new URL("https://calendar.google.com/calendar/render");
-    url.searchParams.set("action", "TEMPLATE");
-    url.searchParams.set("text", "30-minute intro call");
-    url.searchParams.set(
-      "details",
-      "30-minute intro call to discuss your project.\n\nIf Google Meet isn't auto-added, please add one before sending the invite.",
-    );
-    url.searchParams.set("location", "Google Meet");
-    url.searchParams.set("add", socialLinks.email);
-    return url.toString();
+  const scheduleMailtoUrl = (() => {
+    const subject = "Schedule a 30-minute intro call";
+    const body = [
+      "Hi Gabriel,",
+      "",
+      "I'd like to schedule a 30-minute intro call.",
+      "",
+      "My availability:",
+      "- ",
+      "",
+      "Time zone:",
+      "",
+      "Thanks,",
+    ].join("\n");
+    return `mailto:${socialLinks.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   })();
 
   return (
-    <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+    <>
+      <div className="grid gap-8 md:grid-cols-2 md:gap-12">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -128,7 +135,9 @@ const ContactForm = () => {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Your name"
-              className={errors.name ? "border-destructive" : ""}
+              className={`${inputBaseStyles} ${
+                errors.name ? "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/40" : ""
+              }`}
             />
             {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
           </div>
@@ -141,7 +150,9 @@ const ContactForm = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="your@email.com"
-              className={errors.email ? "border-destructive" : ""}
+              className={`${inputBaseStyles} ${
+                errors.email ? "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/40" : ""
+              }`}
             />
             {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
           </div>
@@ -154,7 +165,9 @@ const ContactForm = () => {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Tell me about your project..."
               rows={5}
-              className={errors.message ? "border-destructive" : ""}
+              className={`${inputBaseStyles} ${
+                errors.message ? "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/40" : ""
+              }`}
             />
             {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
           </div>
@@ -226,7 +239,7 @@ const ContactForm = () => {
           <p className="mt-2 text-sm text-muted-foreground">
             Prefer a video call? Book a 30-minute intro to discuss your scope.
           </p>
-          <a href={googleCalendarUrl} target="_blank" rel="noopener noreferrer">
+          <a href={scheduleMailtoUrl}>
             <Button variant="outline" className="mt-4 w-full">
               <Calendar className="h-4 w-4" />
               Book a Call
@@ -234,17 +247,23 @@ const ContactForm = () => {
           </a>
         </div>
 
-        <div className="glass-card p-6">
-          <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            Availability
-          </h3>
-          <p className="mt-2 text-sm text-foreground">
-            Open to remote freelance and long-term collaborations.
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">Global clients, USD payments.</p>
-        </div>
       </motion.div>
     </div>
+
+      <div className="mt-6">
+        <div className="glass-card p-6 md:flex md:items-center md:justify-between">
+          <div>
+            <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
+              Availability
+            </h3>
+            <p className="mt-2 text-sm text-foreground">
+              Open to remote freelance and long-term collaborations.
+            </p>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground md:mt-0">Global clients, USD payments.</p>
+        </div>
+      </div>
+    </>
   );
 };
 

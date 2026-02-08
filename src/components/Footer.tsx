@@ -14,17 +14,14 @@ const Footer = () => {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 text-primary shadow-[0_0_30px_-20px_hsl(var(--primary)/0.8)]">
-                <span className="font-display text-sm font-semibold">GR</span>
-              </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-sm font-semibold text-foreground">Gabriel Rosa</span>
+                <span className="font-display text-lg font-semibold text-foreground">Gabriel Rosa</span>
                 <span className="text-xs text-muted-foreground">Backend Developer</span>
               </div>
             </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              Backend systems for healthcare and data-heavy products. I design APIs, automation
-              pipelines, and deploy-ready infrastructure with Django, Celery, and PostgreSQL.
+              Backend Engineer | Python | Django | APIs | Data Pipelines | Celery | PostgreSQL | AWS (S3/R2) |
+              Healthcare &amp; Lab Automation
             </p>
             <div className="mt-4 flex items-center gap-3">
               <a
@@ -34,7 +31,7 @@ const Footer = () => {
                 className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub"
               >
-                <Github className="h-5 w-5" />
+                <Github className="h-8 w-8" />
               </a>
               <a
                 href={socialLinks.linkedin}
@@ -43,14 +40,14 @@ const Footer = () => {
                 className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-8 w-8" />
               </a>
               <a
                 href={`mailto:${socialLinks.email}`}
                 className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Email"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-8 w-8" />
               </a>
             </div>
           </div>
@@ -79,7 +76,6 @@ const Footer = () => {
                 "Remote-friendly",
                 "USD payments",
                 "UTC-3",
-                "Async-first",
               ].map((item) => (
                 <span key={item} className="tech-badge">
                   {item}

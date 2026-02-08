@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -56,6 +56,18 @@ const focusAreas = [
 const Index = () => {
   const location = useLocation();
   const featuredProjects = projects.filter((p) => p.featured);
+  const [showWhoAmI, setShowWhoAmI] = useState(false);
+  const [isCompiling, setIsCompiling] = useState(false);
+
+  const handleCompile = () => {
+    if (isCompiling) return;
+    setIsCompiling(true);
+    setShowWhoAmI(false);
+    window.setTimeout(() => {
+      setShowWhoAmI(true);
+      setIsCompiling(false);
+    }, 700);
+  };
 
   useEffect(() => {
     const target = sectionByPath[location.pathname];
@@ -110,7 +122,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mt-6 max-w-2xl text-lg text-muted-foreground"
               >
-                I build resilient Django/DRF systems with Celery, Redis, and PostgreSQL, focused on
+                I build resilient Django REST API systems with Celery, Redis, and PostgreSQL, focused on
                 healthcare and biotech data workflows. From MVP to cloud deploy, your stack stays
                 clean, documented, and scalable.
               </motion.p>
@@ -159,7 +171,7 @@ const Index = () => {
                     key={tech}
                     aria-label={tech}
                     title={tech}
-                    className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/25 bg-primary/10 shadow-[0_10px_24px_-18px_hsl(var(--primary)/0.6)]"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/25 bg-primary/10 shadow-[0_10px_24px_-18px_hsl(var(--primary)/0.6)] transition-transform duration-200 hover:scale-150"
                   >
                     <TechIcon name={tech} size={28} className="opacity-95" />
                   </span>,
@@ -301,7 +313,7 @@ const Index = () => {
         <section id="stack" className="py-20 md:py-28">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-start">
-              <div>
+              <div className="min-w-0">
                 <SectionHeader
                   subtitle="Tech Stack"
                   title="Tools I rely on to ship safely"
@@ -342,22 +354,145 @@ const Index = () => {
 
         <section id="about" className="py-20 md:py-28">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-[0.4fr_0.6fr]">
-              <div>
+            <div className="grid gap-12 lg:gap-10 lg:grid-cols-[600px_minmax(0,1fr)] lg:items-start">
+              <div className="space-y-6">
+                <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 text-center">
+                  <div className="h-52 w-52 overflow-hidden rounded-full border-4 border-primary/40 bg-card shadow-[0_0_40px_-24px_hsl(var(--primary)/0.6)]">
+                    <img
+                      src="/profile.png"
+                      alt="Gabriel Rosa"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
+                      Profile
+                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Backend engineering for healthcare, biotech, and data-driven products.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="glass-card p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+                      whoAmI()
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleCompile}
+                      disabled={isCompiling}
+                      className="inline-flex items-center gap-2 rounded-full border border-[#44475a] bg-[#1f212a] px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-[#f8f8f2] transition-colors hover:border-[#6272a4] disabled:opacity-60"
+                    >
+                      {isCompiling ? (
+                        <>
+                          Compiling
+                          <span className="inline-flex h-2 w-2 rounded-full bg-[#50fa7b] animate-pulse" />
+                        </>
+                      ) : (
+                        "Compile"
+                      )}
+                    </button>
+                  </div>
+                  <pre className="mt-3 min-h-[240px] overflow-x-auto rounded-xl p-4 text-xs leading-snug code-dracula">
+<code>
+  <span className="code-keyword">function</span>{" "}
+  <span className="code-fn">whoAmI</span>
+  <span className="code-punct">()</span>{" "}
+  <span className="code-punct">{"{"}</span>
+  {"\n"}  <span className="code-keyword">return</span>{" "}
+  <span className="code-punct">{"{"}</span>
+  {"\n"}    <span className="code-prop">role</span>
+  <span className="code-punct">: </span>
+  <span className="code-string">&quot;Backend Engineer&quot;</span>
+  <span className="code-punct">,</span>
+  {"\n"}    <span className="code-prop">focus</span>
+  <span className="code-punct">: [</span>
+  <span className="code-string">&quot;REST APIs&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Data Pipelines&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Automated Reporting&quot;</span>
+  <span className="code-punct">],</span>
+  {"\n"}    <span className="code-prop">stack</span>
+  <span className="code-punct">: [</span>
+  <span className="code-string">&quot;Python&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Django&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;PostgreSQL&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Celery&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Redis&quot;</span>
+  <span className="code-punct">],</span>
+  {"\n"}    <span className="code-prop">domain</span>
+  <span className="code-punct">: [</span>
+  <span className="code-string">&quot;Healthcare&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Genomics&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Metagenomics&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Proteomics&quot;</span>
+  <span className="code-punct">],</span>
+  {"\n"}    <span className="code-prop">strengths</span>
+  <span className="code-punct">: [</span>
+  <span className="code-string">&quot;Performance&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Data Integrity&quot;</span>
+  <span className="code-punct">, </span>
+  <span className="code-string">&quot;Clean Architecture&quot;</span>
+  <span className="code-punct">],</span>
+  {"\n"}  <span className="code-punct">{"};"}</span>
+  {"\n"}<span className="code-punct">{"}"}</span>
+  {"\n\n"}<span className="code-keyword">const</span>{" "}
+  <span className="code-prop">profile</span>
+  <span className="code-punct"> = </span>
+  <span className="code-fn">whoAmI</span>
+  <span className="code-punct">();</span>
+  {"\n"}<span className="code-prop">console</span>
+  <span className="code-punct">.</span>
+  <span className="code-fn">log</span>
+  <span className="code-punct">(</span>
+  <span className="code-prop">profile</span>
+  <span className="code-punct">);</span>
+</code>
+                  </pre>
+                  {showWhoAmI && (
+                    <div className="mt-3 rounded-xl border border-[#44475a] bg-[#1f212a] p-3 text-xs text-[#f8f8f2]">
+                      <span className="code-keyword">Output:</span>{" "}
+                      Backend Engineer · Biomedical Informatics · Python/Django · REST APIs & Data
+                      Pipelines · Healthcare & Omics Data
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="w-full">
                 <SectionHeader
                   subtitle="About"
-                  title="Backend developer focused on healthcare & biotech"
-                  description="I help teams automate data-heavy workflows and ship compliant, reliable systems."
+                  title="Backend Engineer"
+                  description="Biomedical Informatics background with a focus on production-ready systems."
                   align="left"
                 />
-                <div className="space-y-4 text-muted-foreground">
+                <div className="space-y-4 text-muted-foreground max-w-none text-justify">
                   <p>
-                    My work blends backend engineering with data automation, supporting labs and product
-                    teams that need accurate, traceable pipelines. Every build comes with clear
-                    documentation, testing strategies, and deploy-ready infrastructure.
+                    I&apos;m a Backend Engineer with a strong foundation in Biomedical Informatics from USP
+                    (Universidade de Sao Paulo). I specialize in designing and shipping
+                    production-ready backends using Python and Django.
                   </p>
                   <p>
-                    Based in Brazil (UTC-3), I collaborate with remote teams worldwide and deliver in USD.
+                    My work spans REST APIs, data pipelines, and automated reporting workflows that
+                    transform complex healthcare and scientific data into usable insights. I have
+                    hands-on experience with omics data - including genomics, metagenomics, and
+                    proteomics.
+                  </p>
+                  <p>
+                    I prioritize performance, data integrity, and clean architecture so teams can trust
+                    their systems and move faster.
                   </p>
                 </div>
                 <div className="mt-6 glass-card p-6">
@@ -370,6 +505,14 @@ const Index = () => {
                   </p>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-16">
+              <SectionHeader
+                subtitle="Timeline"
+                title="Experience"
+                description="A timeline of roles and projects in healthcare and biotech."
+              />
               <ExperienceTimeline experience={experience} />
             </div>
           </div>

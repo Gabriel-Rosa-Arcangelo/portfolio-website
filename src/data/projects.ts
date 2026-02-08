@@ -35,15 +35,15 @@ export const projects: Project[] = [
       "React + Vite + Tailwind dashboard with Recharts visualizations",
       "Seed script with synthetic data for demos"
     ],
-    stack: ["Django", "DRF", "JWT", "React", "Vite", "Tailwind", "Recharts"],
+    stack: ["Django", "REST API", "JWT", "React", "Vite", "Tailwind", "Recharts"],
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/nebula-analytics",
     },
     featured: true,
-    category: ["Django", "DRF", "React"],
+    category: ["Django", "REST API", "React"],
     problem: "Businesses need real-time visibility into their analytics data but often struggle with scattered data sources and lack of actionable insights.",
     solution: "A unified analytics platform that aggregates multiple data sources, processes them through a Django REST API, and presents them in an intuitive React dashboard with real-time updates.",
-    architecture: "Django REST Framework backend with JWT authentication, PostgreSQL database, React frontend with Recharts for data visualization, and a modular component architecture.",
+    architecture: "Django REST API backend with JWT authentication, PostgreSQL database, React frontend with Recharts for data visualization, and a modular component architecture.",
     keyFeatures: [
       "Real-time KPI tracking with trend analysis",
       "Product performance distribution charts",
@@ -67,12 +67,12 @@ export const projects: Project[] = [
       "PDF output with metrics + charts (ReportLab + Matplotlib)",
       "Portfolio-ready dark theme UI"
     ],
-    stack: ["Django", "DRF", "Pandas", "Celery", "Redis", "ReportLab", "Matplotlib", "PostgreSQL", "Docker"],
+    stack: ["Django", "REST API", "Pandas", "Celery", "Redis", "ReportLab", "Matplotlib", "PostgreSQL", "Docker"],
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/g2p-app",
     },
     featured: true,
-    category: ["Django", "DRF", "Celery", "Automation"],
+    category: ["Django", "REST API", "Celery", "Automation"],
     problem: "Manual conversion of spreadsheet data to formatted reports is time-consuming, error-prone, and doesn't scale for large datasets.",
     solution: "An automated pipeline that validates, processes, and transforms Excel/CSV data into professional PDF reports with charts and metrics, all handled asynchronously.",
     architecture: "Django backend with Celery for async task processing, Redis as message broker, Pandas for data manipulation, and ReportLab + Matplotlib for PDF generation.",
@@ -99,15 +99,15 @@ export const projects: Project[] = [
       "OpenAPI/Swagger documentation",
       "Synthetic data seeding with Faker"
     ],
-    stack: ["Django", "DRF", "JWT", "Celery", "Redis", "PostgreSQL", "ReportLab", "Matplotlib", "OpenAPI/Swagger", "Docker"],
+    stack: ["Django", "REST API", "JWT", "Celery", "Redis", "PostgreSQL", "ReportLab", "Matplotlib", "OpenAPI/Swagger", "Docker"],
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/healthcare-api",
     },
     featured: true,
-    category: ["Django", "DRF", "Celery", "Healthcare"],
+    category: ["Django", "REST API", "Celery", "Healthcare"],
     problem: "Healthcare facilities need secure, compliant APIs to manage patient data and generate clinical reports without compromising data integrity or security.",
     solution: "A production-ready REST API with strict authentication, role-based access, and automated report generation that meets healthcare industry standards.",
-    architecture: "Django REST Framework with JWT authentication, PostgreSQL for data persistence, Celery for async report generation, and comprehensive OpenAPI documentation.",
+    architecture: "Django REST API with JWT authentication, PostgreSQL for data persistence, Celery for async report generation, and comprehensive OpenAPI documentation.",
     keyFeatures: [
       "HIPAA-conscious security design",
       "Complete patient lifecycle management",
@@ -179,7 +179,7 @@ export const ndaProjects: Project[] = [
       "Real-time status dashboards",
       "Eliminated manual data entry errors"
     ],
-    stack: ["Django", "DRF", "Celery", "Redis", "React", "PostgreSQL"],
+    stack: ["Django", "REST API", "Celery", "Redis", "React", "PostgreSQL"],
     links: {},
     featured: false,
     category: ["Healthcare", "Automation"],
@@ -215,7 +215,7 @@ export const ndaProjects: Project[] = [
       "Automated alert systems",
       "Improved decision-making speed"
     ],
-    stack: ["Django", "DRF", "React", "Recharts", "PostgreSQL"],
+    stack: ["Django", "REST API", "React", "Recharts", "PostgreSQL"],
     links: {},
     featured: false,
     category: ["Healthcare", "React"],
@@ -242,7 +242,7 @@ export const services = [
   {
     id: "2",
     title: "APIs & Integrations",
-    subtitle: "DRF",
+    subtitle: "REST API",
     icon: "Webhook",
     description: "RESTful APIs that connect your systems and enable automation.",
     deliverables: [
@@ -289,45 +289,68 @@ export const services = [
 export const experience = [
   {
     id: "1",
-    role: "Software Developer (Bioinformatics)",
+    role: "Backend Engineer | Healthcare",
     company: "Bioma Genetics",
-    type: "Freelance",
+    type: "Contract",
     period: "Jul 2025 – Present",
     location: "Remote",
     highlights: [
-      "Building healthcare/biotech applications and automation tools",
-      "Designing backend pipelines for data validation, processing, and reporting",
-      "Implementing secure APIs for clinical data management"
+      "Engineered backend services to process, validate, and structure complex biological and clinical data.",
+      "Designed and implemented robust REST APIs for clinical data integration and patient information systems.",
+      "Built and optimized data pipelines handling large-scale biotechnology and omics datasets.",
+      "Created automated PDF and Excel reporting systems transforming raw clinical data into structured insights."
     ]
   },
   {
     id: "2",
     role: "Full-stack Developer",
-    company: "Genika Multiomics",
-    type: "Freelance",
-    period: "Oct 2024 – Present",
-    location: "Remote",
+    company: "Tekhub Solutions",
+    type: "Self-employed",
+    period: "Oct 2024 - Present",
+    location: "São Paulo, Brazil · Remote",
     highlights: [
-      "Developing production-ready automation systems",
-      "Reduced manual errors through automated validation pipelines",
-      "Improved reliability with comprehensive logging and monitoring"
+      "Developed backend systems using Python and Django for scientific data platforms.",
+      "Focused on data processing and automation to enhance laboratory workflows.",
+      "Collaborated with cross-functional teams to ensure seamless integration of software solutions."
     ]
   },
   {
     id: "3",
-    role: "R&D Developer",
-    company: "Eurofins do Brasil Análises de Alimentos e Ambientais",
-    type: "Internship",
-    period: "Oct 2023 – Oct 2024",
-    location: "Indaiatuba, São Paulo, Brazil (Remote)",
+    role: "Full-stack Developer",
+    company: "Genika Multiomics",
+    type: "Self-employed",
+    period: "Oct 2024 – Present",
+    location: "Remote",
     highlights: [
-      "Developed and maintained Django projects focused on web APIs and web scraping for food metagenomics and proteomics research",
-      "Automated workflows to improve data processing efficiency and accuracy in scientific analysis",
-      "Integrated complex scientific data into scalable web platforms to improve accessibility for research teams"
+      "Integrated metagenomics and proteomics data on cloud platforms, enhancing data accessibility.",
+      "Developed statistical analysis tools to support data-driven decision-making in multiomics research."
     ]
   },
   {
     id: "4",
+    role: "Student Researcher",
+    company: "Ribeirao Preto Medical School (FMRP), University of Sao Paulo (USP)",
+    type: "Scientific Initiation",
+    period: "Apr 2023 - Sep 2023 · 6 mos",
+    location: "Departamento de Genética USP - Ribeirão Preto, São Paulo, Brasil",
+    highlights: [
+      "Scientific Initiation focused on Bioinformatics and the analysis of genomic data."
+    ]
+  },
+  {
+    id: "5",
+    role: "P&D Developer",
+    company: "Eurofins Brazil Food and Environmental Analysis",
+    type: "Internship",
+    period: "Oct 2023 – Oct 2024",
+    location: "Indaiatuba, São Paulo, Brazil (Remote)",
+    highlights: [
+      "Developed and maintained Django projects focused on web APIs and web scraping for food metagenomics and proteomics research.",
+      "Integrated complex scientific data into scalable web platforms, facilitating better accessibility for research teams."
+    ]
+  },
+  {
+    id: "6",
     role: "Intern & TT-2 Scholarship Holder",
     company: "Kidopi",
     type: "Internship / Scholarship",
@@ -342,11 +365,11 @@ export const experience = [
 ];
 
 export const skills = {
-  backend: ["Python", "Django", "DRF", "Celery", "Redis"],
+  backend: ["Python", "Django", "REST API", "Celery", "Redis"],
   data: ["Pandas", "Matplotlib", "ReportLab", "R Studio"],
   database: ["PostgreSQL", "MySQL"],
   frontend: ["React", "Tailwind", "Vite"],
-  devops: ["Docker", "AWS", "Heroku", "CI/CD", "Git"],
+  devops: ["Docker", "AWS", "Heroku", "Git"],
   domain: ["Bioinformatics", "Healthcare"]
 };
 
