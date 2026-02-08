@@ -356,8 +356,8 @@ const Index = () => {
           <div className="container">
             <div className="grid gap-12 lg:gap-10 lg:grid-cols-[600px_minmax(0,1fr)] lg:items-start">
               <div className="space-y-6">
-                <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 text-center">
-                  <div className="h-52 w-52 overflow-hidden rounded-full border-4 border-primary/40 bg-card shadow-[0_0_40px_-24px_hsl(var(--primary)/0.6)]">
+                <div className="flex w-full max-w-none flex-col items-start gap-4 text-left lg:max-w-sm lg:items-center lg:text-center">
+                  <div className="h-44 w-44 overflow-hidden rounded-full border-4 border-primary/40 bg-card shadow-[0_0_40px_-24px_hsl(var(--primary)/0.6)] sm:h-52 sm:w-52">
                     <img
                       src="/profile.png"
                       alt="Gabriel Rosa"
@@ -396,7 +396,7 @@ const Index = () => {
                       )}
                     </button>
                   </div>
-                  <pre className="mt-3 min-h-[240px] overflow-x-auto rounded-xl p-4 text-xs leading-snug code-dracula">
+                  <pre className="mt-3 min-h-[220px] overflow-x-hidden rounded-xl p-4 text-[11px] leading-snug code-dracula whitespace-pre-wrap break-words sm:min-h-[240px] sm:overflow-x-auto sm:text-xs sm:whitespace-pre">
 <code>
   <span className="code-keyword">function</span>{" "}
   <span className="code-fn">whoAmI</span>
@@ -478,7 +478,7 @@ const Index = () => {
                   description="Biomedical Informatics background with a focus on production-ready systems."
                   align="left"
                 />
-                <div className="space-y-4 text-muted-foreground max-w-none text-justify">
+                <div className="space-y-4 text-muted-foreground max-w-none text-left md:text-justify">
                   <p>
                     I&apos;m a Backend Engineer with a strong foundation in Biomedical Informatics from USP
                     (Universidade de Sao Paulo). I specialize in designing and shipping

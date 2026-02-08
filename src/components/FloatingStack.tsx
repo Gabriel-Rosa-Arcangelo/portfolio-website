@@ -54,7 +54,7 @@ const toneClasses = {
 
 const FloatingStack = () => {
   return (
-    <div className="relative h-[360px] w-full md:h-[420px]">
+    <div className="relative h-[360px] w-full overflow-hidden md:h-[420px]">
       <div className="absolute inset-0 rounded-[32px] border border-white/10 bg-card/80" />
       <div className="absolute inset-6 rounded-[26px] border border-white/10" />
 
