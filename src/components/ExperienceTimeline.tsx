@@ -18,8 +18,7 @@ interface ExperienceTimelineProps {
 const ExperienceTimeline = ({ experience }: ExperienceTimelineProps) => {
   return (
     <div className="relative">
-      {/* Timeline line */}
-      <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+      <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-primary/60 via-accent/40 to-transparent md:left-1/2 md:-translate-x-px" />
 
       <div className="space-y-8 md:space-y-12">
         {experience.map((item, index) => (
@@ -33,48 +32,54 @@ const ExperienceTimeline = ({ experience }: ExperienceTimelineProps) => {
               index % 2 === 0 ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12"
             }`}
           >
-            {/* Timeline dot */}
             <div
-              className={`absolute top-2 w-3 h-3 rounded-full bg-primary border-4 border-background ${
+              className={`absolute top-2 h-3 w-3 rounded-full border-4 border-background bg-primary ${
                 index % 2 === 0 ? "left-0 md:left-auto md:-right-1.5" : "left-0 md:-left-1.5"
               }`}
             />
 
-            {/* Card */}
             <div className="glass-card p-6">
-              {/* Header */}
-              <div className={`flex items-start gap-3 mb-3 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                  <Briefcase className="w-5 h-5 text-primary" />
+              <div
+                className={`flex items-start gap-3 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10">
+                  <Briefcase className="h-5 w-5 text-primary" />
                 </div>
                 <div className={index % 2 === 0 ? "md:text-right" : ""}>
-                  <h3 className="font-display font-semibold text-foreground">
+                  <h3 className="text-base font-display font-semibold text-foreground">
                     {item.role}
                   </h3>
                   <p className="text-sm text-primary">{item.company}</p>
                 </div>
               </div>
 
-              {/* Meta */}
-              <div className={`flex flex-wrap gap-3 mb-4 text-xs text-muted-foreground ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+              <div
+                className={`mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground ${
+                  index % 2 === 0 ? "md:justify-end" : ""
+                }`}
+              >
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
+                  <Calendar className="h-3 w-3" />
                   {item.period}
                 </span>
                 <span className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3" />
+                  <MapPin className="h-3 w-3" />
                   {item.location}
                 </span>
-                <span className="px-2 py-0.5 rounded bg-muted text-muted-foreground">
+                <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] font-mono uppercase tracking-[0.2em]">
                   {item.type}
                 </span>
               </div>
 
-              {/* Highlights */}
-              <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+              <ul className={`mt-4 space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
                 {item.highlights.map((highlight, i) => (
-                  <li key={i} className={`text-sm text-muted-foreground flex items-start gap-2 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                    <span className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0" />
+                  <li
+                    key={i}
+                    className={`flex items-start gap-2 text-sm text-muted-foreground ${
+                      index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
                     {highlight}
                   </li>
                 ))}

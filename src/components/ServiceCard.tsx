@@ -32,42 +32,37 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <div className="glass-card-hover h-full flex flex-col p-6">
-        {/* Icon & Title */}
-        <div className="flex items-start gap-4 mb-4">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:border-primary/40 transition-colors">
-            <Icon className="w-6 h-6 text-primary" />
+      <div className="glass-card-hover h-full p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10">
+            <Icon className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-lg font-display font-semibold text-foreground">
               {service.title}
             </h3>
-            <span className="text-xs font-mono text-muted-foreground">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
               {service.subtitle}
             </span>
           </div>
         </div>
 
-        {/* Description */}
-        <p className="text-muted-foreground text-sm mb-4">
-          {service.description}
-        </p>
+        <p className="mt-4 text-sm text-muted-foreground">{service.description}</p>
 
-        {/* Deliverables */}
-        <ul className="space-y-2 flex-1 mb-4">
+        <ul className="mt-4 space-y-2">
           {service.deliverables.map((item, i) => (
-            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
               {item}
             </li>
           ))}
         </ul>
 
-        {/* Timeline */}
-        <div className="pt-4 border-t border-border">
-          <span className="text-xs font-mono text-muted-foreground">
-            Typical timeline: <span className="text-foreground">{service.timeline}</span>
+        <div className="mt-6 border-t card-divider pt-4">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            Typical timeline
           </span>
+          <p className="mt-2 text-sm text-foreground">{service.timeline}</p>
         </div>
       </div>
     </motion.div>

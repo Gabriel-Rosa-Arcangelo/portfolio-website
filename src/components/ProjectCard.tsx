@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { Project } from "@/data/projects";
+import TechIcon from "@/components/TechIcon";
 
 interface ProjectCardProps {
   project: Project;
@@ -17,90 +18,86 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <div className="glass-card-hover h-full flex flex-col p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div>
-            <span className="text-xs font-mono text-primary uppercase tracking-wider">
-              {project.type}
-            </span>
-            <h3 className="font-display text-xl font-semibold text-foreground mt-1 group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
+      <div className="glass-card-hover relative h-full overflow-hidden p-6">
+        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,hsl(var(--primary)/0.18),transparent_60%)]" />
+
+        <div className="relative flex h-full flex-col">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+                {project.type}
+              </span>
+              <h3 className="mt-2 text-xl font-display font-semibold text-foreground transition-colors group-hover:text-primary">
+                {project.title}
+              </h3>
+            </div>
+            {project.isNDA && (
+              <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-primary">
+                NDA
+              </span>
+            )}
           </div>
-          {project.isNDA && (
-            <span className="px-2 py-1 text-xs font-mono rounded bg-muted text-muted-foreground">
-              NDA
-            </span>
-          )}
-        </div>
 
-        {/* Description */}
-        <p className="text-muted-foreground text-sm flex-1 mb-4">
-          {project.oneLiner}
-        </p>
+          <p className="mt-3 text-sm text-muted-foreground">{project.oneLiner}</p>
 
-        {/* Highlights */}
-        <ul className="space-y-1.5 mb-4">
-          {project.highlights.slice(0, 3).map((highlight, i) => (
-            <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
-              <span className="w-1 h-1 rounded-full bg-primary mt-1.5 shrink-0" />
-              {highlight}
-            </li>
-          ))}
-        </ul>
+          <ul className="mt-4 space-y-2">
+            {project.highlights.slice(0, 3).map((highlight, i) => (
+              <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
 
-        {/* Stack badges */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.stack.slice(0, 5).map((tech) => (
-            <span key={tech} className="tech-badge">
-              {tech}
-            </span>
-          ))}
-          {project.stack.length > 5 && (
-            <span className="tech-badge">+{project.stack.length - 5}</span>
-          )}
-        </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.stack.slice(0, 5).map((tech) => (
+              <span key={tech} className="tech-badge">
+                <TechIcon name={tech} size={14} className="opacity-90" />
+                {tech}
+              </span>
+            ))}
+            {project.stack.length > 5 && (
+              <span className="tech-badge">+{project.stack.length - 5}</span>
+            )}
+          </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-border">
-          {!project.isNDA ? (
-            <>
-              <Link
-                to={`/projects/${project.slug}`}
-                className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                View Case Study
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <div className="flex items-center gap-2">
-                {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                  </a>
-                )}
-                {project.links.demo && (
-                  <a
-                    href={project.links.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
-            </>
-          ) : (
-            <span className="text-xs text-muted-foreground">
-              Details available on request
-            </span>
-          )}
+          <div className="mt-6 flex items-center justify-between border-t card-divider pt-4">
+            {!project.isNDA ? (
+              <>
+                <Link
+                  to={`/projects/${project.slug}`}
+                  className="flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
+                >
+                  View Case Study
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <div className="flex items-center gap-2">
+                  {project.links.github && (
+                    <a
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    className="rounded-full border border-transparent p-2 text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary"
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                  )}
+                  {project.links.demo && (
+                    <a
+                      href={project.links.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    className="rounded-full border border-transparent p-2 text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </>
+            ) : (
+              <span className="text-xs text-muted-foreground">Details available on request</span>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

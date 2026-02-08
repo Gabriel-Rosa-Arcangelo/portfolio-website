@@ -352,7 +352,7 @@ export const skills = {
 
 export const socialLinks = {
   github: "https://github.com/Gabriel-Rosa-Arcangelo",
-  linkedin: "https://www.linkedin.com/in/gabriel-rosa-arcangelo-aa1572165/",
+  linkedin: "https://www.linkedin.com/in/gabriel-rosa-arcangelo/",
   website: "https://dangelodevstudio.com",
-  email: "dangelodevstudio@gmail.com"
+  email: "grosarcangelo@gmail.com"
 };

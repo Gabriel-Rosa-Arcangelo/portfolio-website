@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, Check, Mail, Linkedin, Github, Calendar, Copy } from "lucide-react";
+import {
+  Send,
+  Loader2,
+  Check,
+  Mail,
+  Linkedin,
+  Github,
+  Calendar,
+  Copy,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,19 +33,19 @@ const ContactForm = () => {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (formData.name.length > 100) {
       newErrors.name = "Name must be less than 100 characters";
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email";
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.length > 1000) {
@@ -49,14 +58,14 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validate()) return;
 
     setIsSubmitting(true);
 
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     toast({
       title: "Opening email draft…",
       description: `To: ${socialLinks.email}`,
@@ -74,7 +83,6 @@ const ContactForm = () => {
     const mailtoUrl = `mailto:${socialLinks.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoUrl;
 
-    // Reset after opening the draft
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", message: "" });
@@ -105,15 +113,14 @@ const ContactForm = () => {
   })();
 
   return (
-    <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-      {/* Form */}
+    <div className="grid gap-8 md:grid-cols-2 md:gap-12">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="glass-card space-y-6 p-6 md:p-8">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
@@ -123,9 +130,7 @@ const ContactForm = () => {
               placeholder="Your name"
               className={errors.name ? "border-destructive" : ""}
             />
-            {errors.name && (
-              <p className="text-xs text-destructive">{errors.name}</p>
-            )}
+            {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
           </div>
 
           <div className="space-y-2">
@@ -138,9 +143,7 @@ const ContactForm = () => {
               placeholder="your@email.com"
               className={errors.email ? "border-destructive" : ""}
             />
-            {errors.email && (
-              <p className="text-xs text-destructive">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
           </div>
 
           <div className="space-y-2">
@@ -153,29 +156,23 @@ const ContactForm = () => {
               rows={5}
               className={errors.message ? "border-destructive" : ""}
             />
-            {errors.message && (
-              <p className="text-xs text-destructive">{errors.message}</p>
-            )}
+            {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
           </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting || isSubmitted}
-            className="w-full gap-2"
-          >
+          <Button type="submit" disabled={isSubmitting || isSubmitted} className="w-full btn-glow">
             {isSubmitting ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" />
                 Opening...
               </>
             ) : isSubmitted ? (
               <>
-                <Check className="w-4 h-4" />
+                <Check className="h-4 w-4" />
                 Draft Ready
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
+                <Send className="h-4 w-4" />
                 Send Message
               </>
             )}
@@ -183,7 +180,6 @@ const ContactForm = () => {
         </form>
       </motion.div>
 
-      {/* Direct Links */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -192,32 +188,24 @@ const ContactForm = () => {
         className="space-y-6"
       >
         <div className="glass-card p-6">
-          <h3 className="font-display font-semibold text-foreground mb-4">
-            Direct Contact
-          </h3>
-          <div className="space-y-3">
+          <h3 className="text-lg font-display font-semibold text-foreground">Direct Contact</h3>
+          <div className="mt-4 space-y-3">
             <button
               onClick={copyEmail}
-              className="w-full flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors text-left"
+              className="flex w-full items-center gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-3 text-left transition-colors hover:border-primary/40"
             >
-              <Mail className="w-5 h-5 text-primary" />
-              <span className="flex-1 text-sm text-foreground truncate">
-                {socialLinks.email}
-              </span>
-              {copied ? (
-                <Check className="w-4 h-4 text-primary" />
-              ) : (
-                <Copy className="w-4 h-4 text-muted-foreground" />
-              )}
+              <Mail className="h-5 w-5 text-primary" />
+              <span className="flex-1 truncate text-sm text-foreground">{socialLinks.email}</span>
+              {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4 text-muted-foreground" />}
             </button>
 
             <a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+              className="flex items-center gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-3 transition-colors hover:border-primary/40"
             >
-              <Linkedin className="w-5 h-5 text-primary" />
+              <Linkedin className="h-5 w-5 text-primary" />
               <span className="flex-1 text-sm text-foreground">LinkedIn Profile</span>
             </a>
 
@@ -225,44 +213,35 @@ const ContactForm = () => {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+              className="flex items-center gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-3 transition-colors hover:border-primary/40"
             >
-              <Github className="w-5 h-5 text-primary" />
+              <Github className="h-5 w-5 text-primary" />
               <span className="flex-1 text-sm text-foreground">GitHub Profile</span>
             </a>
           </div>
         </div>
 
         <div className="glass-card p-6">
-          <h3 className="font-display font-semibold text-foreground mb-4">
-            Schedule a Call
-          </h3>
-          <p className="text-sm text-muted-foreground mb-4">
-            Prefer a video call? Book a 30-minute intro call to discuss your project.
+          <h3 className="text-lg font-display font-semibold text-foreground">Schedule a Call</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Prefer a video call? Book a 30-minute intro to discuss your scope.
           </p>
-          <a
-            href={googleCalendarUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outline" className="w-full gap-2">
-              <Calendar className="w-4 h-4" />
+          <a href={googleCalendarUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" className="mt-4 w-full">
+              <Calendar className="h-4 w-4" />
               Book a Call
             </Button>
           </a>
         </div>
 
         <div className="glass-card p-6">
-          <h3 className="font-display font-semibold text-foreground mb-2">
+          <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-muted-foreground">
             Availability
           </h3>
-          <p className="text-sm text-muted-foreground">
-            Open to remote freelance & long-term collaborations.
-            <br />
-            <span className="text-primary">Global clients, USD payments</span>
-            <br />
-            Based in Brazil (UTC-3)
+          <p className="mt-2 text-sm text-foreground">
+            Open to remote freelance and long-term collaborations.
           </p>
+          <p className="mt-2 text-sm text-muted-foreground">Global clients, USD payments.</p>
         </div>
       </motion.div>
     </div>

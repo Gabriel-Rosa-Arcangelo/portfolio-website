@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { socialLinks } from "@/data/projects";
 
 const Footer = () => {
@@ -8,97 +9,96 @@ const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-border bg-card/30">
+    <footer className="border-t border-white/10 bg-background/80">
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <span className="font-display font-bold text-primary text-sm">G</span>
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <Link to="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 text-primary shadow-[0_0_30px_-20px_hsl(var(--primary)/0.8)]">
+                <span className="font-display text-sm font-semibold">GR</span>
               </div>
-              <span className="font-display font-semibold text-foreground">
-                Gabriel Rosa Arcangelo
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-sm font-semibold text-foreground">Gabriel Rosa</span>
+                <span className="text-xs text-muted-foreground">Backend Developer</span>
+              </div>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-sm mb-4">
-              Software Developer specializing in healthcare data, bioinformatics, and automation. 
-              Building production-ready systems from prototype to cloud deploy.
+            <p className="mt-4 max-w-md text-sm text-muted-foreground">
+              Backend systems for healthcare and data-heavy products. I design APIs, automation
+              pipelines, and deploy-ready infrastructure with Django, Celery, and PostgreSQL.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3">
               <a
                 href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub"
               >
-                <Github className="w-5 h-5" />
+                <Github className="h-5 w-5" />
               </a>
               <a
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${socialLinks.email}`}
-                className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                className="rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Email"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+          <div className="glass-card p-6">
+            <h4 className="text-lg font-display font-semibold text-foreground">
+              Ready to plan your backend?
+            </h4>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Share your scope and timeline. I reply with next steps and a clear plan.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link to="/contact">
+                <Button size="sm" className="btn-glow">
+                  Start a Project
+                </Button>
+              </Link>
+              <Link to="/projects">
+                <Button size="sm" variant="outline">
+                  View Work
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2">
               {[
-                { label: "Projects", href: "/projects" },
-                { label: "Services", href: "/services" },
-                { label: "About", href: "/about" },
-                { label: "Contact", href: "/contact" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+                "Remote-friendly",
+                "USD payments",
+                "UTC-3",
+                "Async-first",
+              ].map((item) => (
+                <span key={item} className="tech-badge">
+                  {item}
+                </span>
               ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">Get in Touch</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Open to remote freelance</li>
-              <li>Long-term collaborations</li>
-              <li>Global, USD payments</li>
-              <li className="text-primary">Brazil (UTC-3)</li>
-            </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center">
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Gabriel Rosa Arcangelo. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
           >
             Back to top
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="h-4 w-4" />
           </button>
         </div>
       </div>

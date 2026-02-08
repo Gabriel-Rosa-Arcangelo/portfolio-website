@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        sans: ["Sora", "system-ui", "sans-serif"],
+        display: ["Unbounded", "Sora", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
@@ -122,7 +122,7 @@ export default {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-gradient": "radial-gradient(ellipse at center, hsl(var(--primary) / 0.1) 0%, transparent 70%)",
+        "hero-gradient": "radial-gradient(ellipse at center, hsl(var(--primary) / 0.12) 0%, transparent 70%)",
         "card-gradient": "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%)",
       },
     },

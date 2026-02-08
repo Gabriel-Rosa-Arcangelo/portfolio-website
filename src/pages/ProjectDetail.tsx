@@ -4,6 +4,7 @@ import { ArrowLeft, Github, ExternalLink, ChevronLeft, ChevronRight } from "luci
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TechIcon from "@/components/TechIcon";
 import { projects } from "@/data/projects";
 import { useEffect, useState } from "react";
 
@@ -19,6 +20,9 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-background">
+        <div className="fixed inset-0 -z-10 mesh-bg" />
+        <div className="fixed inset-0 -z-10 grid-overlay opacity-50" />
+        <div className="noise-overlay" />
         <Navbar />
         <div className="container py-32 text-center">
           <h1 className="text-3xl font-display font-bold text-foreground mb-4">
@@ -51,6 +55,9 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="fixed inset-0 -z-10 mesh-bg" />
+      <div className="fixed inset-0 -z-10 grid-overlay opacity-50" />
+      <div className="noise-overlay" />
       <Navbar />
 
       {/* Hero */}
@@ -111,6 +118,7 @@ const ProjectDetail = () => {
             >
               {project.stack.map((tech) => (
                 <span key={tech} className="tech-badge">
+                  <TechIcon name={tech} size={14} className="opacity-90" />
                   {tech}
                 </span>
               ))}

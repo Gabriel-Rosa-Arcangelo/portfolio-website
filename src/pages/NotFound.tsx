@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Home } from "lucide-react";
+import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="fixed inset-0 -z-10 mesh-bg" />
+      <div className="fixed inset-0 -z-10 grid-overlay opacity-50" />
+      <div className="noise-overlay" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

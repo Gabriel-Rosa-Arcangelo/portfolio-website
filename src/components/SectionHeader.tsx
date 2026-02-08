@@ -16,24 +16,33 @@ const SectionHeader = ({
   align = "center",
   children,
 }: SectionHeaderProps) => {
+  const isCentered = align === "center";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5 }}
-      className={`mb-12 md:mb-16 ${align === "center" ? "text-center" : ""}`}
+      className={`mb-10 md:mb-14 ${isCentered ? "text-center" : "text-left"}`}
     >
       {subtitle && (
-        <span className="inline-block text-xs font-mono text-primary uppercase tracking-wider mb-2">
-          {subtitle}
-        </span>
+        <div className={`flex items-center gap-3 ${isCentered ? "justify-center" : "justify-start"}`}>
+          <span className="h-px w-10 bg-gradient-to-r from-primary to-accent" />
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            {subtitle}
+          </span>
+        </div>
       )}
-      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <h2 className="mt-4 text-3xl font-display font-semibold text-foreground md:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className={`text-muted-foreground text-lg ${align === "center" ? "max-w-2xl mx-auto" : "max-w-2xl"}`}>
+        <p
+          className={`mt-4 text-lg text-muted-foreground ${
+            isCentered ? "mx-auto max-w-2xl" : "max-w-xl"
+          }`}
+        >
           {description}
         </p>
       )}
