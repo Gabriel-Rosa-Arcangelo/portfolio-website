@@ -23,6 +23,61 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "5",
+    title: "NGS Lab Hub",
+    slug: "ngs-lab-hub",
+    type: "Fullstack (Django REST API + React + Celery)",
+    oneLiner:
+      "Portfolio-grade NGS data platform with async report exports, MinIO storage, and role-based access.",
+    images: [
+      "/ngs-hub/dashboard.png",
+      "/ngs-hub/samples-crud.png",
+      "/ngs-hub/export-detail.png",
+      "/ngs-hub/minio-objects.png",
+    ],
+    highlights: [
+      "JWT authentication with access/refresh flow and /me endpoint",
+      "Role-based authorization (ADMIN/USER) for samples and exports visibility",
+      "NGS sample CRUD with pipeline metrics (reads, Q30, depth, variants, status)",
+      "Async export jobs with Celery + Redis, progress counters, and execution event logs",
+      "CSV/XLSX/ZIP report generation with secure presigned download links",
+      "MinIO (S3-compatible) artifact storage plus cleanup lifecycle for expired exports",
+    ],
+    stack: [
+      "Django",
+      "REST API",
+      "JWT",
+      "Celery",
+      "Redis",
+      "PostgreSQL",
+      "MinIO",
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind",
+      "Docker",
+      "OpenAPI/Swagger",
+    ],
+    links: {
+      github: "https://github.com/Gabriel-Rosa-Arcangelo/ngs-lab-hub",
+    },
+    featured: true,
+    category: ["Django", "REST API", "Automation", "React", "Healthcare"],
+    problem:
+      "NGS teams need reliable, auditable pipelines to track sequencing samples and generate exports without blocking API performance or exposing sensitive data.",
+    solution:
+      "A fullstack platform that separates interactive API requests from heavy export processing using Celery workers, then delivers artifacts through secure presigned URLs.",
+    architecture:
+      "React + TypeScript dashboard (Vite/Tailwind) calling a Django REST API secured by JWT; PostgreSQL as system-of-record; Celery + Redis for async jobs; MinIO S3-compatible storage for generated artifacts; periodic cleanup jobs for expired exports.",
+    keyFeatures: [
+      "End-to-end NGS workflow: sample registry, pipeline states, and export lifecycle",
+      "Operational dashboard with KPIs, recent samples, and report generation trends",
+      "Exports API with job statuses, detail pages, and task-level execution events",
+      "Multiple export formats (CSV, XLSX, ZIP) for different downstream workflows",
+      "OpenAPI/Swagger documentation and Docker Compose local production-like setup",
+    ],
+  },
+  {
     id: "1",
     title: "Nebula Analytics",
     slug: "nebula-analytics",
