@@ -1,4 +1,4 @@
-# Gabriel Rosa — Backend Developer Portfolio
+# Gabriel Rosa — Backend Engineer Portfolio
 
 Corporate-style portfolio for backend engineering, focused on clean presentation for recruiters and clients. Built as a single landing page with structured sections, case studies, and clear contact options.
 

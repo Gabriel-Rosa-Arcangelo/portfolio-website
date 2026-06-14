@@ -16,7 +16,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3">
               <div className="flex flex-col leading-none">
                 <span className="font-display text-lg font-semibold text-foreground">Gabriel Rosa</span>
-                <span className="text-xs text-muted-foreground">Backend Developer</span>
+                <span className="text-xs text-muted-foreground">Backend Engineer</span>
               </div>
             </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">

@@ -124,7 +124,7 @@ export const projects: Project[] = [
     ],
     stack: ["Django", "REST API", "Pandas", "Celery", "Redis", "ReportLab", "Matplotlib", "PostgreSQL", "Docker"],
     links: {
-      github: "https://github.com/Gabriel-Rosa-Arcangelo/g2p-app",
+      github: "https://github.com/Gabriel-Rosa-Arcangelo/excel-pdf-automation",
     },
     featured: true,
     category: ["Django", "REST API", "Celery", "Automation"],
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     id: "3",
     title: "Healthcare API",
     slug: "healthcare-api",
-    type: "Secure REST API + background report generation",
+    type: "REST API + background report generation",
     oneLiner: "Manage patients, lab samples and results with JWT auth, filtering/pagination, and background clinical PDF reports.",
     images: ["/api1.png", "/api2.png"],
     highlights: [
@@ -154,21 +154,21 @@ export const projects: Project[] = [
       "OpenAPI/Swagger documentation",
       "Synthetic data seeding with Faker"
     ],
-    stack: ["Django", "REST API", "JWT", "Celery", "Redis", "PostgreSQL", "ReportLab", "Matplotlib", "OpenAPI/Swagger", "Docker"],
+    stack: ["Django", "REST API", "JWT", "Celery", "Redis", "ReportLab", "Matplotlib", "OpenAPI/Swagger"],
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/healthcare-api",
     },
     featured: true,
     category: ["Django", "REST API", "Celery", "Healthcare"],
-    problem: "Healthcare facilities need secure, compliant APIs to manage patient data and generate clinical reports without compromising data integrity or security.",
-    solution: "A production-ready REST API with strict authentication, role-based access, and automated report generation that meets healthcare industry standards.",
-    architecture: "Django REST API with JWT authentication, PostgreSQL for data persistence, Celery for async report generation, and comprehensive OpenAPI documentation.",
+    problem: "Clinical workflow demos need a structured API to manage synthetic patients, samples, results, and generated reports.",
+    solution: "A portfolio REST API with JWT authentication, filtering, documented endpoints, and asynchronous PDF report generation.",
+    architecture: "Django REST API with JWT authentication, Celery for async report generation, and validated OpenAPI documentation.",
     keyFeatures: [
-      "HIPAA-conscious security design",
-      "Complete patient lifecycle management",
+      "JWT-protected write operations",
+      "Synthetic patient and sample lifecycle management",
       "Automated clinical PDF reports",
       "RESTful API with OpenAPI docs",
-      "Scalable async processing"
+      "Async processing with Celery"
     ]
   },
   {
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/RIB0212-2023-1",
     },
-    featured: true,
+    featured: false,
     category: ["ML", "Healthcare"],
     problem: "Manual identification of sacroiliac regions in medical imaging is time-intensive and requires specialized radiological expertise.",
     solution: "A deep learning-based object detection pipeline that automates the identification of sacroiliac regions, reducing analysis time and supporting radiologists.",
@@ -212,9 +212,9 @@ export const ndaProjects: Project[] = [
     oneLiner: "Automated clinical report generation system for healthcare diagnostics company.",
     highlights: [
       "Automated generation of clinical reports from lab data",
-      "HIPAA-compliant data handling",
-      "Integration with existing LIMS systems",
-      "Reduced report generation time by 80%"
+      "Controlled handling of sensitive workflow inputs",
+      "Integration with existing operational systems",
+      "Reduced repetitive manual reporting work"
     ],
     stack: ["Django", "Celery", "ReportLab", "PostgreSQL", "Docker"],
     links: {},
@@ -232,7 +232,7 @@ export const ndaProjects: Project[] = [
       "Sample tracking from receipt to results",
       "Automated quality control checks",
       "Real-time status dashboards",
-      "Eliminated manual data entry errors"
+      "Reduced duplicate manual data entry"
     ],
     stack: ["Django", "REST API", "Celery", "Redis", "React", "PostgreSQL"],
     links: {},
@@ -250,7 +250,7 @@ export const ndaProjects: Project[] = [
       "Processing of large genomic datasets",
       "Automated validation and quality metrics",
       "Integration with bioinformatics tools",
-      "Scalable cloud-native architecture"
+      "Queue-based processing architecture"
     ],
     stack: ["Python", "Pandas", "Celery", "Docker", "PostgreSQL"],
     links: {},
@@ -268,7 +268,7 @@ export const ndaProjects: Project[] = [
       "Real-time data visualization",
       "Role-based access control",
       "Automated alert systems",
-      "Improved decision-making speed"
+      "Consolidated operational visibility"
     ],
     stack: ["Django", "REST API", "React", "Recharts", "PostgreSQL"],
     links: {},
@@ -431,6 +431,6 @@ export const skills = {
 export const socialLinks = {
   github: "https://github.com/Gabriel-Rosa-Arcangelo",
   linkedin: "https://www.linkedin.com/in/gabriel-rosa-arcangelo/",
-  website: "https://dangelodevstudio.com",
+  website: "https://gabrielrosadev.tech/",
   email: "grosarcangelo@gmail.com"
 };

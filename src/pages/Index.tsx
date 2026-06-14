@@ -103,7 +103,7 @@ const Index = () => {
                 transition={{ duration: 0.6 }}
                 className="text-xs font-mono uppercase tracking-[0.35em] text-accent"
               >
-                <span className="hero-tag">Backend Developer</span>
+                <span className="hero-tag">Backend Engineer</span>
               </motion.p>
 
               <motion.h1
@@ -252,7 +252,7 @@ const Index = () => {
             <SectionHeader
               subtitle="Featured Work"
               title="Projects built for reliability and scale"
-              description="Production-ready systems that automate data, expose clean APIs, and power dashboards."
+              description="Production-minded systems that automate data, expose documented APIs, and power dashboards."
             />
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -268,7 +268,7 @@ const Index = () => {
                     Private Work
                   </p>
                   <h3 className="mt-2 text-xl font-display font-semibold text-foreground">
-                    NDA projects delivered for labs and biotech teams
+                    Private work described at capability level, without client code or data
                   </h3>
                 </div>
                 <Link to="/contact">
