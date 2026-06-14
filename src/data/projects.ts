@@ -78,6 +78,75 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "6",
+    title: "Assay Run Orchestrator",
+    slug: "assay-run-orchestrator",
+    type: "Backend platform (Django REST API + Celery)",
+    oneLiner:
+      "Synthetic assay-run orchestration with auditable state transitions, QC metrics, RBAC, and async manifests.",
+    highlights: [
+      "Multi-organization RBAC with admin, operator, and viewer roles",
+      "Transactional state machine with explicit allowed transitions",
+      "Immutable audit events for run, QC, and export operations",
+      "Organization-scoped async CSV manifests with Celery",
+      "Nine automated tests plus validated OpenAPI and CI",
+    ],
+    stack: ["Django", "REST API", "JWT", "Celery", "Redis", "PostgreSQL", "Docker", "OpenAPI/Swagger"],
+    links: {
+      github: "https://github.com/Gabriel-Rosa-Arcangelo/assay-run-orchestrator",
+    },
+    featured: true,
+    category: ["Django", "REST API", "Celery", "Automation", "Healthcare"],
+    problem:
+      "Operational teams need a reliable way to coordinate assay runs, review QC metrics, and understand every state change without exposing real laboratory workflows.",
+    solution:
+      "A fully synthetic API that demonstrates organization-scoped operations, transactional state transitions, immutable audit events, and asynchronous manifest exports.",
+    architecture:
+      "JWT clients call a Django REST API backed by PostgreSQL; Celery and Redis generate organization-scoped CSV manifests; every sensitive operation records an immutable audit event.",
+    keyFeatures: [
+      "Explicit CREATED → READY → RUNNING → QC_REVIEW → RELEASED state flow",
+      "Configurable QC limits with computed pass status",
+      "Viewer and operator permission boundaries covered by tests",
+      "Docker Compose demo with synthetic seed data",
+      "No client code, patient data, report templates, or real assay rules",
+    ],
+  },
+  {
+    id: "7",
+    title: "Partner Integration Gateway",
+    slug: "partner-integration-gateway",
+    type: "Integration platform (Django REST API + Celery)",
+    oneLiner:
+      "Synthetic integration gateway with HMAC ingestion, idempotency, signed webhooks, and dead-letter tracking.",
+    highlights: [
+      "HMAC SHA-256 verification for public partner ingestion",
+      "Per-source idempotency using event identifiers",
+      "Stable internal event normalization",
+      "Signed outbound webhook delivery and attempt tracking",
+      "Dead-letter status after repeated failures",
+      "Eight automated tests plus validated OpenAPI and CI",
+    ],
+    stack: ["Django", "REST API", "JWT", "HMAC", "Celery", "Redis", "PostgreSQL", "Docker", "OpenAPI/Swagger"],
+    links: {
+      github: "https://github.com/Gabriel-Rosa-Arcangelo/partner-integration-gateway",
+    },
+    featured: true,
+    category: ["Django", "REST API", "Celery", "Automation"],
+    problem:
+      "Partner integrations need secure ingestion, duplicate protection, stable internal payloads, and transparent delivery failure handling.",
+    solution:
+      "A synthetic gateway that verifies inbound signatures, enforces idempotency, normalizes events, and tracks signed outbound webhook deliveries through dead-letter states.",
+    architecture:
+      "Partners send HMAC-signed events to a public Django endpoint; PostgreSQL enforces idempotency; Celery workers deliver normalized signed webhooks and record each result.",
+    keyFeatures: [
+      "Public signed-ingestion endpoint with JWT-protected management APIs",
+      "Concurrent-safe idempotency backed by database constraints",
+      "Independent inbound and outbound signing secrets",
+      "Delivery terminal-state protection and dead-letter visibility",
+      "No private endpoints, real partner payloads, or copied mappings",
+    ],
+  },
+  {
     id: "1",
     title: "Nebula Analytics",
     slug: "nebula-analytics",
