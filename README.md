@@ -1,4 +1,4 @@
-# Gabriel Rosa — Backend Engineer Portfolio
+# Gabriel Rosa — Senior Backend Engineer Portfolio
 
 Corporate-style portfolio for backend engineering, focused on clean presentation for recruiters and clients. Built as a single landing page with structured sections, case studies, and clear contact options.
 
@@ -7,7 +7,7 @@ Corporate-style portfolio for backend engineering, focused on clean presentation
 - One-page layout with anchored sections (Projects, Services, Stack, About, Contact)
 - Corporate dark theme with animated grid hero
 - Floating tech stack panel + real technology icons
-- Case studies with detailed project cards and NDA section
+- Public case studies plus capability-level confidential work summaries
 - Contact flow with email draft + quick social links
 
 ## Tech Stack
@@ -29,7 +29,7 @@ Corporate-style portfolio for backend engineering, focused on clean presentation
 ## Sections
 
 - Hero (title, CTAs, animated grid)
-- Featured Projects + NDA section
+- Selected public projects, full repository directory, and confidential work summaries
 - Services
 - Tech Stack
 - Experience

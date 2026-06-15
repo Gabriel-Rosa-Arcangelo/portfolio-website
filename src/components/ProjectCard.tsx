@@ -52,7 +52,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </span>
               <div>
                 <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-                  {project.type}
+                  {project.organization ?? project.type}
                 </span>
                 <h3 className="mt-2 text-xl font-display font-semibold text-foreground transition-colors group-hover:text-primary">
                   {project.title}
@@ -61,7 +61,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             </div>
             {project.isNDA && (
               <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-primary">
-                NDA
+                Confidential
               </span>
             )}
           </div>
@@ -123,7 +123,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 </div>
               </>
             ) : (
-              <span className="text-xs text-muted-foreground">Details available on request</span>
+              <span className="text-xs text-muted-foreground">
+                Capability-level summary. Private implementation withheld.
+              </span>
             )}
           </div>
         </div>

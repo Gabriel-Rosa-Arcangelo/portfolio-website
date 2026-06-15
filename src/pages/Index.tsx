@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import {
   ArrowRight,
-  Database,
+  Building2,
+  Dna,
+  Gauge,
   Github,
   Linkedin,
-  ShieldCheck,
-  Workflow,
-  Cloud,
+  LockKeyhole,
+  ServerCog,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -19,37 +20,40 @@ import ServiceCard from "@/components/ServiceCard";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsSection from "@/components/SkillsSection";
 import ContactForm from "@/components/ContactForm";
-import FloatingStack from "@/components/FloatingStack";
+import ArchitecturePanel from "@/components/ArchitecturePanel";
+import ProjectDirectory from "@/components/ProjectDirectory";
 import TechIcon from "@/components/TechIcon";
 import { projects, ndaProjects, services, experience, skills, socialLinks } from "@/data/projects";
 
 const sectionByPath: Record<string, string> = {
   "/projects": "projects",
   "/services": "services",
+  "/experience": "experience",
+  "/stack": "stack",
   "/about": "about",
   "/contact": "contact",
 };
 
-const focusAreas = [
+const impactMetrics = [
   {
-    title: "API-first systems",
-    description: "Secure, documented APIs with strong DX and observability.",
-    icon: ShieldCheck,
+    value: "200+",
+    label: "healthcare units supported",
+    icon: Building2,
   },
   {
-    title: "Automation pipelines",
-    description: "Celery-backed workflows, queues, and scheduled jobs.",
-    icon: Workflow,
+    value: "70%",
+    label: "performance gain on async workloads",
+    icon: Gauge,
   },
   {
-    title: "Data-ready backends",
-    description: "PostgreSQL + analytics-ready schemas and reporting.",
-    icon: Database,
+    value: "8",
+    label: "public engineering case studies",
+    icon: ServerCog,
   },
   {
-    title: "Cloud deploys",
-    description: "Dockerized services, CI/CD, and AWS-ready setups.",
-    icon: Cloud,
+    value: "3",
+    label: "active healthcare & biotech roles",
+    icon: Dna,
   },
 ];
 
@@ -101,9 +105,11 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-xs font-mono uppercase tracking-[0.35em] text-accent"
+                className="max-w-full text-[10px] font-mono uppercase leading-relaxed tracking-[0.22em] text-accent sm:text-xs sm:tracking-[0.35em]"
               >
-                <span className="hero-tag">Backend Engineer</span>
+                <span className="hero-tag max-w-full text-left">
+                  Senior Backend Engineer · Healthcare & Biotech
+                </span>
               </motion.p>
 
               <motion.h1
@@ -112,8 +118,8 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="mt-6 text-4xl font-display font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl"
               >
-                Backend systems.
-                <span className="gradient-text block">Built for scale.</span>
+                Complex data.
+                <span className="gradient-text block">Dependable systems.</span>
               </motion.h1>
 
               <motion.p
@@ -122,9 +128,9 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mt-6 max-w-2xl text-lg text-muted-foreground"
               >
-                I build resilient Django REST API systems with Celery, Redis, and PostgreSQL, focused on
-                healthcare and biotech data workflows. From MVP to cloud deploy, your stack stays
-                clean, documented, and scalable.
+                I design backend platforms, APIs, and data pipelines that turn healthcare and
+                biological workflows into reliable software. Built with Python, Django, Celery,
+                PostgreSQL, and a production-first mindset.
               </motion.p>
 
               <motion.div
@@ -133,17 +139,17 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-8 flex flex-wrap gap-4"
               >
-                <Link to="/projects">
-                  <Button size="lg" className="btn-glow">
-                    View Projects
+                <Link to="/projects" className="w-full sm:w-auto">
+                  <Button size="lg" className="btn-glow w-full sm:w-auto">
+                    Explore selected work
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Link to="/contact">
+                <Link to="/contact" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-primary/50 bg-primary/15 text-primary shadow-[0_16px_36px_-24px_hsl(var(--primary)/0.7)] hover:bg-primary/25"
+                    className="w-full border-primary/50 bg-primary/15 text-primary shadow-[0_16px_36px_-24px_hsl(var(--primary)/0.7)] hover:bg-primary/25 sm:w-auto"
                   >
                     Let&apos;s Talk
                   </Button>
@@ -163,9 +169,9 @@ const Index = () => {
                   "Celery",
                   "Redis",
                   "PostgreSQL",
-                  "MySQL",
                   "Docker",
-                  "Cloud",
+                  "React",
+                  "TypeScript",
                 ].map((tech) =>
                   <span
                     key={tech}
@@ -210,7 +216,7 @@ const Index = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <FloatingStack />
+              <ArchitecturePanel />
             </motion.div>
           </div>
         </section>
@@ -218,24 +224,28 @@ const Index = () => {
         <section className="pb-16">
           <div className="container">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {focusAreas.map((area, index) => {
-                const Icon = area.icon;
+              {impactMetrics.map((metric, index) => {
+                const Icon = metric.icon;
                 return (
                   <motion.div
-                    key={area.title}
+                    key={metric.label}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="glass-card p-5"
+                    className="metric-card"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10">
-                      <Icon className="h-5 w-5 text-primary" />
+                    <div className="flex items-start justify-between gap-4">
+                      <p className="text-3xl font-display font-semibold text-foreground md:text-4xl">
+                        {metric.value}
+                      </p>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/25 bg-primary/10">
+                        <Icon className="h-4 w-4 text-primary" />
+                      </span>
                     </div>
-                    <h3 className="text-base font-display font-semibold text-foreground">
-                      {area.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{area.description}</p>
+                    <p className="mt-3 text-xs font-mono uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">
+                      {metric.label}
+                    </p>
                   </motion.div>
                 );
               })}
@@ -251,8 +261,8 @@ const Index = () => {
           <div className="container">
             <SectionHeader
               subtitle="Featured Work"
-              title="Projects built for reliability and scale"
-              description="Production-minded systems that automate data, expose documented APIs, and power dashboards."
+              title="Selected systems, built in public"
+              description="Synthetic and sanitized case studies that demonstrate the same engineering patterns I use professionally, without exposing client data or proprietary rules."
             />
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -261,15 +271,43 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="mt-12 glass-card p-6 md:p-8">
-              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="mt-12">
+              <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">
-                    Private Work
+                    Public repository directory
+                  </p>
+                  <h3 className="mt-2 text-2xl font-display font-semibold text-foreground">
+                    All public engineering projects
+                  </h3>
+                </div>
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-primary transition-colors hover:text-accent"
+                >
+                  View GitHub profile
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <ProjectDirectory projects={projects} />
+            </div>
+
+            <div className="confidential-section mt-16 p-6 md:p-8">
+              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-amber-200">
+                    <LockKeyhole className="h-3.5 w-3.5" />
+                    Confidential professional work
                   </p>
                   <h3 className="mt-2 text-xl font-display font-semibold text-foreground">
-                    Private work described at capability level, without client code or data
+                    Real-world impact, described at a safe level
                   </h3>
+                  <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                    These summaries cover outcomes and engineering capabilities only. They exclude
+                    client code, datasets, endpoints, infrastructure details, and business rules.
+                  </p>
                 </div>
                 <Link to="/contact">
                   <Button size="sm" variant="outline">
@@ -277,7 +315,7 @@ const Index = () => {
                   </Button>
                 </Link>
               </div>
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="mt-6 grid gap-6 lg:grid-cols-3">
                 {ndaProjects.map((project, index) => (
                   <ProjectCard key={project.id} project={project} index={index} />
                 ))}
@@ -290,12 +328,27 @@ const Index = () => {
           <div className="section-divider" />
         </div>
 
+        <section id="experience" className="py-20 md:py-28">
+          <div className="container">
+            <SectionHeader
+              subtitle="Experience"
+              title="From research to production systems"
+              description="Current work across healthcare, laboratory operations, analytics, and multiomics, followed by the technical foundation that shaped it."
+            />
+            <ExperienceTimeline experience={experience} />
+          </div>
+        </section>
+
+        <div className="container">
+          <div className="section-divider" />
+        </div>
+
         <section id="services" className="py-20 md:py-28">
           <div className="container">
             <SectionHeader
-              subtitle="Services"
-              title="Backend delivery you can depend on"
-              description="From API development to automation and DevOps, I build the infrastructure behind your product."
+              subtitle="Capabilities"
+              title="How I turn operational complexity into software"
+              description="Backend architecture, integrations, data automation, and production delivery for teams working with complex workflows."
             />
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -406,7 +459,7 @@ const Index = () => {
   <span className="code-punct">{"{"}</span>
   {"\n"}    <span className="code-prop">role</span>
   <span className="code-punct">: </span>
-  <span className="code-string">&quot;Backend Engineer&quot;</span>
+  <span className="code-string">&quot;Senior Backend Engineer&quot;</span>
   <span className="code-punct">,</span>
   {"\n"}    <span className="code-prop">focus</span>
   <span className="code-punct">: [</span>
@@ -464,7 +517,7 @@ const Index = () => {
                   {showWhoAmI && (
                     <div className="mt-3 rounded-xl border border-[#44475a] bg-[#1f212a] p-3 text-xs text-[#f8f8f2]">
                       <span className="code-keyword">Output:</span>{" "}
-                      Backend Engineer · Biomedical Informatics · Python/Django · REST APIs & Data
+                      Senior Backend Engineer · Biomedical Informatics · Python/Django · REST APIs & Data
                       Pipelines · Healthcare & Omics Data
                     </div>
                   )}
@@ -474,13 +527,13 @@ const Index = () => {
               <div className="w-full">
                 <SectionHeader
                   subtitle="About"
-                  title="Backend Engineer"
-                  description="Biomedical Informatics background with a focus on production-ready systems."
+                  title="Senior Backend Engineer"
+                  description="Biomedical Informatics background with a focus on production-ready healthcare and biotech systems."
                   align="left"
                 />
                 <div className="space-y-4 text-muted-foreground max-w-none text-left md:text-justify">
                   <p>
-                    I&apos;m a Backend Engineer with a strong foundation in Biomedical Informatics from USP
+                    I&apos;m a Senior Backend Engineer with a strong foundation in Biomedical Informatics from USP
                     (Universidade de Sao Paulo). I specialize in designing and shipping
                     production-ready backends using Python and Django.
                   </p>
@@ -507,14 +560,6 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="mt-16">
-              <SectionHeader
-                subtitle="Timeline"
-                title="Experience"
-                description="A timeline of roles and projects in healthcare and biotech."
-              />
-              <ExperienceTimeline experience={experience} />
-            </div>
           </div>
         </section>
 

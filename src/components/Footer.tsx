@@ -16,11 +16,11 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3">
               <div className="flex flex-col leading-none">
                 <span className="font-display text-lg font-semibold text-foreground">Gabriel Rosa</span>
-                <span className="text-xs text-muted-foreground">Backend Engineer</span>
+                <span className="text-xs text-muted-foreground">Senior Backend Engineer</span>
               </div>
             </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              Backend Engineer | Python | Django | APIs | Data Pipelines | Celery | PostgreSQL | AWS (S3/R2) |
+              Senior Backend Engineer | Python | Django | APIs | Data Pipelines | Celery | PostgreSQL | AWS (S3/R2) |
               Healthcare &amp; Lab Automation
             </p>
             <div className="mt-4 flex items-center gap-3">

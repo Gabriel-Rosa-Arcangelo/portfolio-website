@@ -7,8 +7,9 @@ import { socialLinks } from "@/data/projects";
 
 const navItems = [
   { label: "Home", href: "/", sectionId: "home" },
-  { label: "Projects", href: "/projects", sectionId: "projects" },
-  { label: "Services", href: "/services", sectionId: "services" },
+  { label: "Work", href: "/projects", sectionId: "projects" },
+  { label: "Experience", href: "/experience", sectionId: "experience" },
+  { label: "Stack", href: "/stack", sectionId: "stack" },
   { label: "About", href: "/about", sectionId: "about" },
   { label: "Contact", href: "/contact", sectionId: "contact" },
 ];
@@ -156,7 +157,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden xl:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -173,7 +174,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <a
               href={socialLinks.github}
               target="_blank"
@@ -202,7 +203,7 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="xl:hidden rounded-full border border-white/10 p-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Toggle navigation"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -216,7 +217,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-white/10 bg-background/95 backdrop-blur-2xl"
+            className="xl:hidden border-b border-white/10 bg-background/95 backdrop-blur-2xl"
           >
             <div className="container py-4 space-y-2">
               {navItems.map((item) => (

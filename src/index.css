@@ -7,18 +7,18 @@
 @layer base {
   :root {
     /* Corporate black/blue palette */
-    --background: 221 39% 11%;
+    --background: 224 42% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 215 28% 17%;
+    --card: 222 32% 13%;
     --card-foreground: 210 40% 98%;
     --card-muted-foreground: 215 20% 70%;
-    --card-border: 220 18% 24%;
+    --card-border: 219 24% 22%;
 
     --popover: 220 28% 7%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 221 83% 53%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 220 18% 15%;
@@ -27,7 +27,7 @@
     --muted: 220 16% 18%;
     --muted-foreground: 215 20% 70%;
 
-    --accent: 213 94% 68%;
+    --accent: 187 92% 58%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -58,21 +58,21 @@
   }
 
   .dark {
-    --background: 221 39% 11%;
+    --background: 224 42% 8%;
     --foreground: 210 40% 98%;
-    --card: 215 28% 17%;
+    --card: 222 32% 13%;
     --card-foreground: 210 40% 98%;
     --card-muted-foreground: 215 20% 70%;
-    --card-border: 220 18% 24%;
+    --card-border: 219 24% 22%;
     --popover: 220 28% 7%;
     --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
     --secondary: 220 18% 15%;
     --secondary-foreground: 210 40% 96%;
     --muted: 220 16% 18%;
     --muted-foreground: 215 20% 70%;
-    --accent: 213 94% 68%;
+    --accent: 187 92% 58%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
@@ -110,8 +110,9 @@
 @layer components {
   /* Glass card effect */
   .glass-card {
-    @apply rounded-2xl;
-    background: hsl(var(--card));
+    @apply rounded-[1.5rem];
+    background:
+      linear-gradient(145deg, hsl(var(--card) / 0.96), hsl(var(--background) / 0.92));
     border: 1px solid hsl(var(--card-border));
     box-shadow:
       0 12px 30px -24px hsl(var(--primary) / 0.35),
@@ -248,9 +249,9 @@
 
   .mesh-bg {
     background:
-      radial-gradient(1200px 600px at 8% -10%, hsl(var(--primary) / 0.22), transparent 60%),
-      radial-gradient(900px 500px at 92% 0%, hsl(var(--accent) / 0.18), transparent 55%),
-      radial-gradient(800px 500px at 50% 85%, hsl(var(--primary) / 0.1), transparent 60%),
+      radial-gradient(1100px 620px at 5% -10%, hsl(var(--primary) / 0.23), transparent 62%),
+      radial-gradient(900px 520px at 95% 4%, hsl(var(--accent) / 0.14), transparent 58%),
+      radial-gradient(900px 580px at 50% 92%, hsl(257 90% 62% / 0.09), transparent 65%),
       hsl(var(--background));
   }
 
@@ -271,7 +272,7 @@
       linear-gradient(to bottom, hsl(var(--accent) / 0.12) 1px, transparent 1px);
     background-size: 48px 48px, 48px 48px, 8px 8px, 8px 8px;
     background-position: 0 0, 0 0, 0 0, 0 0;
-    opacity: 0.4;
+    opacity: 0.24;
     mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
     animation: grid-pan 10s linear infinite;
@@ -301,7 +302,8 @@
   }
 
   .hero-tag {
-    @apply inline-flex items-center rounded-full border border-primary/40 bg-primary/10 px-4 py-2;
+    @apply inline-block max-w-full rounded-2xl border border-primary/40 bg-primary/10 px-4 py-2;
+    overflow-wrap: anywhere;
     box-shadow: 0 0 0 0 hsl(var(--primary) / 0.55);
     animation: tag-pulse 2.2s ease-in-out infinite;
   }
@@ -345,6 +347,52 @@
 
   .card-divider {
     border-color: hsl(var(--card-border));
+  }
+
+  .architecture-panel {
+    border: 1px solid hsl(var(--primary) / 0.24);
+    background:
+      linear-gradient(150deg, hsl(var(--card) / 0.98), hsl(var(--background) / 0.9)),
+      hsl(var(--card));
+    box-shadow:
+      0 45px 100px -65px hsl(var(--primary) / 0.9),
+      inset 0 1px 0 hsl(var(--foreground) / 0.07);
+  }
+
+  .architecture-layer {
+    @apply flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3;
+    box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.03);
+  }
+
+  .metric-card {
+    @apply rounded-[1.5rem] border border-white/10 p-5 transition-all duration-300;
+    background: linear-gradient(145deg, hsl(var(--card) / 0.86), hsl(var(--background) / 0.75));
+    box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.04);
+  }
+
+  .metric-card:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    transform: translateY(-3px);
+  }
+
+  .confidential-section {
+    @apply rounded-[2rem] border border-amber-300/15;
+    background:
+      radial-gradient(700px 260px at 10% 0%, hsl(42 95% 55% / 0.08), transparent 70%),
+      linear-gradient(145deg, hsl(var(--card) / 0.88), hsl(var(--background) / 0.78));
+  }
+
+  .experience-card {
+    @apply rounded-[1.5rem] border border-white/10 p-5 md:p-6;
+    background: linear-gradient(145deg, hsl(var(--card) / 0.9), hsl(var(--background) / 0.78));
+    box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.04);
+  }
+
+  .experience-card-current {
+    border-color: hsl(var(--primary) / 0.28);
+    box-shadow:
+      0 30px 70px -55px hsl(var(--primary) / 0.8),
+      inset 0 1px 0 hsl(var(--foreground) / 0.05);
   }
 }
 

@@ -19,6 +19,7 @@ export interface Project {
   solution?: string;
   architecture?: string;
   keyFeatures?: string[];
+  organization?: string;
 }
 
 export const projects: Project[] = [
@@ -163,7 +164,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/nebula-analytics",
     },
-    featured: true,
+    featured: false,
     category: ["Django", "REST API", "React"],
     problem: "Businesses need real-time visibility into their analytics data but often struggle with scattered data sources and lack of actionable insights.",
     solution: "A unified analytics platform that aggregates multiple data sources, processes them through a Django REST API, and presents them in an intuitive React dashboard with real-time updates.",
@@ -195,7 +196,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/Gabriel-Rosa-Arcangelo/excel-pdf-automation",
     },
-    featured: true,
+    featured: false,
     category: ["Django", "REST API", "Celery", "Automation"],
     problem: "Manual conversion of spreadsheet data to formatted reports is time-consuming, error-prone, and doesn't scale for large datasets.",
     solution: "An automated pipeline that validates, processes, and transforms Excel/CSV data into professional PDF reports with charts and metrics, all handled asynchronously.",
@@ -269,23 +270,58 @@ export const projects: Project[] = [
       "Visualization of detection results",
       "Academic documentation"
     ]
+  },
+  {
+    id: "8",
+    title: "G2P Sequence Workflow",
+    slug: "g2p-app",
+    type: "Sanitized workflow prototype (Django)",
+    oneLiner:
+      "Sanitized sequence-file submission workflow with controlled access and consolidated report retrieval.",
+    highlights: [
+      "Authenticated sequence-file submission workflow",
+      "Controlled report access and retrieval",
+      "Environment-based configuration with no embedded credentials",
+      "Public repository intentionally stripped of client data and private rules",
+    ],
+    stack: ["Python", "Django", "Pandas", "Selenium", "ReportLab", "Docker"],
+    links: {
+      github: "https://github.com/Gabriel-Rosa-Arcangelo/g2p-app",
+    },
+    featured: false,
+    category: ["Django", "Automation", "Healthcare"],
+    problem:
+      "Sequence-processing workflows need a clear submission and report-retrieval experience while keeping operational details and sensitive data out of a public demonstration.",
+    solution:
+      "A sanitized Django prototype that demonstrates the workflow boundary, access controls, and report delivery without exposing client data, credentials, or proprietary rules.",
+    architecture:
+      "Django application with authenticated workflow views, environment-based configuration, and isolated processing utilities.",
+    keyFeatures: [
+      "Sanitized public demonstration",
+      "Authenticated workflow access",
+      "Sequence-file submission",
+      "Consolidated report retrieval",
+      "No real samples, client assets, or proprietary processing rules",
+    ],
   }
 ];
 
 export const ndaProjects: Project[] = [
   {
     id: "nda-1",
-    title: "Healthcare PDF Report Generator",
-    slug: "healthcare-pdf-generator",
-    type: "Private / NDA",
-    oneLiner: "Automated clinical report generation system for healthcare diagnostics company.",
+    title: "Healthcare & Biotech Operations",
+    slug: "bioma-healthcare-biotech-operations",
+    type: "Confidential client work",
+    organization: "Bioma Genetics",
+    oneLiner:
+      "Backend systems supporting laboratory operations, biological data processing, and clinical integrations.",
     highlights: [
-      "Automated generation of clinical reports from lab data",
-      "Controlled handling of sensitive workflow inputs",
-      "Integration with existing operational systems",
-      "Reduced repetitive manual reporting work"
+      "Clinical and omics data validation and structuring",
+      "REST APIs supporting operational integrations",
+      "Asynchronous processing for data-heavy workflows",
+      "Automated PDF and Excel report generation",
     ],
-    stack: ["Django", "Celery", "ReportLab", "PostgreSQL", "Docker"],
+    stack: ["Python", "Django", "REST API", "Celery", "PostgreSQL", "Docker"],
     links: {},
     featured: false,
     category: ["Healthcare", "Automation"],
@@ -293,56 +329,42 @@ export const ndaProjects: Project[] = [
   },
   {
     id: "nda-2",
-    title: "Lab Workflow Automation",
-    slug: "lab-workflow-automation",
-    type: "Private / NDA",
-    oneLiner: "End-to-end laboratory workflow automation for sample processing and tracking.",
+    title: "Healthcare Analytics & Automation",
+    slug: "tekhub-healthcare-analytics",
+    type: "Confidential delivery",
+    organization: "Tekhub Solutions",
+    oneLiner:
+      "Healthcare data platforms, analytics dashboards, and asynchronous processing for operational teams.",
     highlights: [
-      "Sample tracking from receipt to results",
-      "Automated quality control checks",
-      "Real-time status dashboards",
-      "Reduced duplicate manual data entry"
+      "Analytics visibility across 200+ hospital and diagnostic units",
+      "Backend services for large-scale healthcare data processing",
+      "Up to 70% performance improvement by moving heavy work to queues",
+      "Cloud storage integrations and database query optimization",
     ],
-    stack: ["Django", "REST API", "Celery", "Redis", "React", "PostgreSQL"],
+    stack: ["Python", "Django", "Celery", "Redis", "PostgreSQL", "AWS"],
     links: {},
     featured: false,
-    category: ["Healthcare", "Automation"],
+    category: ["Healthcare", "Automation", "React"],
     isNDA: true
   },
   {
     id: "nda-3",
-    title: "Biotech Data Processing Pipeline",
-    slug: "biotech-data-pipeline",
-    type: "Private / NDA",
-    oneLiner: "High-throughput data processing pipeline for genomic analysis workflows.",
+    title: "Multiomics Analysis Workflows",
+    slug: "genika-multiomics-workflows",
+    type: "Confidential scientific work",
+    organization: "Genika Multiomics",
+    oneLiner:
+      "Reproducible processing and analysis workflows for multiomics and environmental datasets.",
     highlights: [
-      "Processing of large genomic datasets",
-      "Automated validation and quality metrics",
-      "Integration with bioinformatics tools",
-      "Queue-based processing architecture"
+      "microRNA differential-expression analysis workflows",
+      "Metabolomics and environmental data processing",
+      "Genomics, proteomics, and metabolomics integration",
+      "Reproducible analytical outputs and visualizations",
     ],
-    stack: ["Python", "Pandas", "Celery", "Docker", "PostgreSQL"],
+    stack: ["Python", "R Studio", "Pandas", "Docker", "PostgreSQL"],
     links: {},
     featured: false,
-    category: ["Healthcare", "Automation"],
-    isNDA: true
-  },
-  {
-    id: "nda-4",
-    title: "Clinical Data Dashboard",
-    slug: "clinical-data-dashboard",
-    type: "Private / NDA",
-    oneLiner: "Real-time clinical data visualization and reporting platform.",
-    highlights: [
-      "Real-time data visualization",
-      "Role-based access control",
-      "Automated alert systems",
-      "Consolidated operational visibility"
-    ],
-    stack: ["Django", "REST API", "React", "Recharts", "PostgreSQL"],
-    links: {},
-    featured: false,
-    category: ["Healthcare", "React"],
+    category: ["Healthcare", "Automation", "Bioinformatics"],
     isNDA: true
   }
 ];
@@ -413,16 +435,16 @@ export const services = [
 export const experience = [
   {
     id: "1",
-    role: "Backend Engineer | Healthcare",
+    role: "Senior Backend Engineer",
     company: "Bioma Genetics",
     type: "Contract",
     period: "Jul 2025 – Present",
-    location: "Remote",
+    location: "São Paulo, Brazil · Remote",
     highlights: [
-      "Engineered backend services to process, validate, and structure complex biological and clinical data.",
-      "Designed and implemented robust REST APIs for clinical data integration and patient information systems.",
-      "Built and optimized data pipelines handling large-scale biotechnology and omics datasets.",
-      "Created automated PDF and Excel reporting systems transforming raw clinical data into structured insights."
+      "Lead backend development supporting healthcare and biotechnology operations.",
+      "Design services that process, validate, and structure clinical and omics data.",
+      "Build REST APIs and asynchronous workflows for laboratory and clinical integrations.",
+      "Automate diagnostic PDF and Excel reporting to reduce repetitive operational work."
     ]
   },
   {
@@ -433,9 +455,10 @@ export const experience = [
     period: "Oct 2024 - Present",
     location: "São Paulo, Brazil · Remote",
     highlights: [
-      "Developed backend systems using Python and Django for scientific data platforms.",
-      "Focused on data processing and automation to enhance laboratory workflows.",
-      "Collaborated with cross-functional teams to ensure seamless integration of software solutions."
+      "Develop healthcare data platforms and analytics systems used across 200+ hospital and diagnostic units.",
+      "Built production analytics dashboards for real-time operational monitoring.",
+      "Improved performance by up to 70% by moving heavy workloads to Celery and Redis.",
+      "Integrated cloud storage and optimized database queries for reliability and scale."
     ]
   },
   {
@@ -444,10 +467,12 @@ export const experience = [
     company: "Genika Multiomics",
     type: "Self-employed",
     period: "Oct 2024 – Present",
-    location: "Remote",
+    location: "São Paulo, Brazil · Remote",
     highlights: [
-      "Integrated metagenomics and proteomics data on cloud platforms, enhancing data accessibility.",
-      "Developed statistical analysis tools to support data-driven decision-making in multiomics research."
+      "Build reproducible bioinformatics and data-processing systems for multiomics datasets.",
+      "Develop microRNA differential-expression workflows using Python, R, and DESeq2.",
+      "Process metabolomics and environmental hydrocarbon analysis data.",
+      "Integrate genomics, proteomics, and metabolomics data into structured analytical outputs."
     ]
   },
   {

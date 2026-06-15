@@ -11,6 +11,7 @@ const techIconMap: Record<string, string> = {
   docker: "https://icon.icepanel.io/Technology/svg/Docker.svg",
   aws: "https://icon.icepanel.io/Technology/svg/AWS.svg",
   react: "https://icon.icepanel.io/Technology/svg/React.svg",
+  typescript: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
   vite: "https://icon.icepanel.io/Technology/svg/Vite.svg",
   tailwind: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
   tailwindcss: "https://icon.icepanel.io/Technology/svg/Tailwind-CSS.svg",
@@ -32,6 +33,8 @@ const techIconMap: Record<string, string> = {
   git: "https://icon.icepanel.io/Technology/svg/Git.svg",
   rstudio: "https://cdn.simpleicons.org/rstudio",
   cloud: "https://cdn.simpleicons.org/cloudflare",
+  minio: "https://cdn.simpleicons.org/minio",
+  hmac: "https://cdn.simpleicons.org/keycdn",
 };
 
 const normalizeTechName = (name: string) =>
